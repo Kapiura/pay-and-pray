@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pay_and_pray/screens/main_screen.dart' show MainScreen;
+import 'screens/main_screen.dart';
+import 'screens/balance_screen.dart';
+import 'screens/slot_machine_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Pay & Pray', home: MainScreen());
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const MainScreen(),
+        '/balance': (context) => const BalanceScreen(),
+        '/game': (context) => const GameScreen(),
+      },
+    );
   }
 }
