@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  provider: ^6.0.5
 
   cupertino_icons: ^1.0.8
 
@@ -25,3 +25,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/cherry.png
+    - assets/lemon.png
+    - assets/seven.png
+    - assets/bar.png
+    - assets/watermelon.png
