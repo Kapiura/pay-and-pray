@@ -5,5 +5,5 @@ Pay &amp; Pray
 - [x] Wybor technologii: Flutter + Dart
 - [x] Projekt UI/UX w Figma
 - [x] Struktura projektu i repozytorium Github
-- [] Podstawowa logika gry (maszyna losujaca, GUI, animacje)
-- [] Prosty ekran glowny i mechanika losowania
+- [x] Podstawowa logika gry (maszyna losujaca, GUI, animacje)
+- [x] Prosty ekran glowny i mechanika losowania
