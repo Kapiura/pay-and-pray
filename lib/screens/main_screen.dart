@@ -6,75 +6,98 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {},
-          padding: EdgeInsets.all(0),
+          padding: EdgeInsets.zero,
         ),
       ),
-      backgroundColor: Color.fromRGBO(102, 0, 51, 0.5),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/logo.png", width: 500, height: 500),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/game');
-              },
-              child: const Text('Play'),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(200, 60),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                backgroundColor: Color.fromRGBO(102, 153, 153, 1),
-                foregroundColor: Color.fromRGBO(255, 255, 255, 1),
-                textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      backgroundColor: const Color.fromRGBO(102, 0, 51, 0.5),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: screenSize.height),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width:
+                        isPortrait
+                            ? screenSize.width * 0.8
+                            : screenSize.width * 0.5,
+                    height:
+                        isPortrait
+                            ? screenSize.height * 0.4
+                            : screenSize.height * 0.6,
+                    child: Image.asset("assets/logo.png", fit: BoxFit.contain),
+                  ),
+
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildActionButton(
+                        context: context,
+                        text: 'Play',
+                        onPressed: () => Navigator.pushNamed(context, '/game'),
+                      ),
+                      SizedBox(height: screenSize.height * 0.02),
+                      _buildActionButton(
+                        context: context,
+                        text: 'Bank',
+                        onPressed:
+                            () => Navigator.pushNamed(context, '/balance'),
+                      ),
+                      SizedBox(height: screenSize.height * 0.02),
+                      _buildActionButton(
+                        context: context,
+                        text: 'Quit',
+                        onPressed: () => SystemNavigator.pop(),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/balance');
-              },
-              child: const Text('Bank'),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(200, 60),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                backgroundColor: Color.fromRGBO(102, 153, 153, 1),
-                foregroundColor: Color.fromRGBO(255, 255, 255, 1),
-                textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                SystemNavigator.pop();
-              },
-              child: const Text('Quit'),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(200, 60),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                backgroundColor: Color.fromRGBO(102, 153, 153, 1),
-                foregroundColor: Color.fromRGBO(255, 255, 255, 1),
-                textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required BuildContext context,
+    required String text,
+    required VoidCallback onPressed,
+  }) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: screenSize.width * 0.045,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(screenSize.width * 0.6, screenSize.height * 0.07),
+        padding: EdgeInsets.symmetric(
+          horizontal: screenSize.width * 0.05,
+          vertical: screenSize.height * 0.015,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        backgroundColor: const Color.fromRGBO(102, 153, 153, 1),
+        foregroundColor: Colors.white,
       ),
     );
   }
