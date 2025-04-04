@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int balance = 1000; // Przykładowa wartość balance
+int balance = 1000;
 int amount = 0;
 
 class GameScreen extends StatelessWidget {
@@ -10,14 +10,14 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Tło AppBar przezroczyste
-        elevation: 0, // Brak cienia
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Kolor ikony
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // Powrót do poprzedniego ekranu
+            Navigator.pop(context);
           },
-          padding: EdgeInsets.all(0), // Brak paddingu wokół ikony
+          padding: EdgeInsets.all(0),
         ),
       ),
       backgroundColor: Color.fromRGBO(102, 0, 51, 0.5),
@@ -39,11 +39,7 @@ class GameScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Image.asset(
-                      "assets/logo.png",
-                      width: 150, // Szerokość
-                      height: 150, // Wysokość
-                    ),
+                    Image.asset("assets/logo.png", width: 150, height: 150),
                     Row(),
                   ],
                 ),

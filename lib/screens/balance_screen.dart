@@ -9,22 +9,22 @@ class BalanceScreen extends StatefulWidget {
 
 class _BalanceScreenState extends State<BalanceScreen> {
   final TextEditingController _controller = TextEditingController();
-  String _inputValue = ''; // Zmienna do przechowywania wprowadzonej liczby
-  int balance = 1000; // Przykładowa wartość balance
-  int amount = 0; // Przykładowa wartość amount
+  String _inputValue = '';
+  int balance = 1000;
+  int amount = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Tło AppBar przezroczyste
-        elevation: 0, // Brak cienia
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Kolor ikony
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // Powrót do poprzedniego ekranu
+            Navigator.pop(context);
           },
-          padding: EdgeInsets.all(0), // Brak paddingu wokół ikony
+          padding: EdgeInsets.all(0),
         ),
       ),
       backgroundColor: Color.fromRGBO(102, 0, 51, 0.5),
@@ -33,7 +33,6 @@ class _BalanceScreenState extends State<BalanceScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("assets/logo.png", width: 500, height: 500),
-            // Wyświetlanie balance i amount
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -61,19 +60,18 @@ class _BalanceScreenState extends State<BalanceScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            // TextField do wprowadzania liczby
             Container(
-              width: 200, // Ustalamy szerokość TextField, tak samo jak przycisk
+              width: 200,
               child: TextField(
                 controller: _controller,
-                keyboardType: TextInputType.number, // Tylko liczby
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Colors.white), // Kolor etykiety
+                  labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(),
-                  fillColor: Colors.white, // Tło pola tekstowego
-                  filled: true, // Użycie tła
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
-                style: TextStyle(color: Colors.black), // Kolor tekstu wewnątrz
+                style: TextStyle(color: Colors.black),
                 onChanged: (value) {
                   setState(() {
                     _inputValue = value;
@@ -85,20 +83,16 @@ class _BalanceScreenState extends State<BalanceScreen> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  _inputValue =
-                      _controller.text; // Przypisanie wartości z TextField
+                  _inputValue = _controller.text;
                 });
 
                 if (_validateInput() == null) {
-                  // Działanie, jeśli liczba jest poprawna
                   setState(() {
-                    // Zaktualizowanie balance i amount na podstawie wprowadzonej liczby
                     amount += int.parse(_inputValue);
                     balance -= int.parse(_inputValue);
                   });
                   Navigator.pushNamed(context, '/');
                 } else {
-                  // Pokazanie komunikatu o błędzie, jeśli liczba jest niepoprawna
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Please enter a valid number')),
                   );
@@ -119,7 +113,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context); // Powrót do poprzedniego ekranu
+                Navigator.pop(context);
               },
               child: const Text('Back'),
               style: ElevatedButton.styleFrom(
