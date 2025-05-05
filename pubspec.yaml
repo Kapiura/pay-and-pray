@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.5
+  shared_preferences: ^2.2.2
+  audioplayers: ^4.1.0
 
   cupertino_icons: ^1.0.8
 
@@ -30,3 +32,4 @@ flutter:
     - assets/seven.png
     - assets/bar.png
     - assets/watermelon.png
+    - assets/audio/

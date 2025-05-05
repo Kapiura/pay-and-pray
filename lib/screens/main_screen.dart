@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pay_and_pray/providers/audio_handler.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AudioHandler.playBackground();
     final screenSize = MediaQuery.of(context).size;
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
@@ -19,6 +21,7 @@ class MainScreen extends StatelessWidget {
           onPressed: () {},
           padding: EdgeInsets.zero,
         ),
+
       ),
       backgroundColor: const Color.fromRGBO(102, 0, 51, 0.5),
       body: SafeArea(
